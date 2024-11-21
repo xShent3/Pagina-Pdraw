@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffeafe;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        nav {
+            margin-bottom: 6%;
+            position: fixed; /* Mantiene la navegación en la parte superior */
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            background-color: #f0ead6;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000; /* Asegura que la barra esté sobre otros elementos */
+            margin-bottom: 20px;
+        }
+        header {
+            margin-top: 6%;
+            position: relative;
+
+            z-index: 999; /* Para que el header esté debajo de la barra de navegación */
+        }
+        .nav-button {
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #006400;
+            background: linear-gradient(to bottom, #ffb6c1, #90ee90);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            text-decoration: none;
+        }
+        .nav-button:hover {
+            background: linear-gradient(to bottom, #ff69b4, #32cd32);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .nav-button.active {
+            background: linear-gradient(to bottom, #ff1493, #00ff00);
+            color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3) inset;
+        }
+        main {
+            margin-top: 80px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #ff1493;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-top: 50px;
+        }
+        .terms-section {
+            background-color: #4a4a4a;
+            color: #ffd700;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .terms-section h2 {
+            color: #ff69b4;
+        }
+        .terms-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .terms-section li {
+            margin-bottom: 10px;
+        }
+        .highlight {
+            color: #90ee90;
+        }
+        .draw-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .draw-column {
+            padding: 20px;
+            background-color: #4a4a4a;
+            color: #ffd700;
+            border-radius: 10px;
+        }
+        .draw-column h3 {
+            color: #ff69b4;
+        }
+        .draw-column ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .draw-column li::before {
+            content: "✓ ";
+            color: #90ee90;
+        }
+        .no-draw-column li::before {
+            content: "✗ ";
+            color: #ff1493;
+        }
+        .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        }
+        .social-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #90ee90;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .social-icon:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }  
+        .social-icon svg {
+        width: 20px;
+        height: 20px;
+        fill: #006400;
+        }
+        footer {
+        background-color: #ffc0cb;
+        padding: 20px;
+        text-align: center;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 600px) {
+            .nav-button {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
+            main {
+                margin-top: 80px;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .terms-section, .draw-column {
+                padding: 15px;
+            }
+            .social-icons {
+                flex-wrap: wrap;
+            }
+            .social-icon {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            .nav-button {
+                flex: 1 1 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="nav-container" aria-label="Navegación principal">
+            <a class="nav-button" href="{% url 'inicio' %}">Inicio</a>
+            <a class="nav-button" href="{% url 'sobre_mi' %}">Sobre Mi</a>
+            <a class="nav-button active" href="{% url 'terminos' %}">Términos</a>
+            <a class="nav-button" href="{% url 'contacto' %}">Contacto</a>
+            <a class="nav-button" href="{% url 'portafolio' %}">Portafolio</a>
+            <a class="nav-button" href="{% url 'precios' %}">Precios</a>
+            {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                    <!-- Si es superusuario, no mostrar registro, login ni mi perfil -->
+                    <a class="nav-button" href="{% url 'opciones_categorias' %}">Administrar</a>
+                    <a class="nav-button" href="{% url 'logout' %}">Cerrar sesión</a>
+                {% else %}
+                    <!-- Si es usuario normal, no mostrar administrar, login ni registro -->
+                    <a class="nav-button" href="{% url 'mi_perfil' %}">Mi Perfil</a>
+                    <a class="nav-button" href="{% url 'logout' %}">Cerrar sesión</a>
+                {% endif %}
+            {% else %}
+                <!-- Si no está autenticado, mostrar login y registro -->
+                <a class="nav-button" href="{% url 'login' %}">Login</a>
+                <a class="nav-button" href="{% url 'registro' %}">Registro</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        <h1>TÉRMINOS Y CONDICIONES</h1>
+        <section class="terms-section">
+            <h2>Términos Generales</h2>
+            <ul>
+                <li>Se requiere pago completo vía Paypal para comenzar tu comisión.</li>
+                <li>La ilustración <span class="highlight">puede tomarme de una semana a un mes o más</span> (depende de la complejidad).</li>
+                <li>Si deseas que tu ilustración tenga prioridad se deberá pagar un monto extra de $15USD/ CLP.</li>
+                <li>Siempre informaré si, por razones personales, hay una demora en mi trabajo.</li>
+                <li>Tengo el derecho de rechazar cualquier pedido con el que no me sienta cómodo.</li>
+                <li>Si la ilustración será para uso comercial <span class="highlight">debes</span> agregar esa información.</li>
+                <li>Después de aprobar el lineart/boceto final, cualquier cambio grande tendrá costo extra (+20%).</li>
+                <li>Si quieres que el trabajo sea privado por favor indícalo o tendré el permiso de compartirlo en mis redes sociales (con los créditos correspondientes).</li>
+                <li>Prohibo el uso de mi trabajo como NFT</li>
+                <li>Los términos están sujetos a cambios.</li>
+            </ul>
+        </section>
+        <section class="terms-section">
+            <h2>Política de reembolso</h2>
+            <ul>
+                <li>Se devolverá el 100% si cancela el pedido antes de haber realizado que comience su pedido</li>
+                <li>Se devolverá el 75% durante la etapa del boceto</li>
+                <li>Si luego del boceto decide cancelar el pedido, el cliente NO recibirá un reembolso a menos que crea que no puedo terminar el trabajo. En ese caso, reembolsaré el dinero equivalente al trabajo que he completado.</li>
+            </ul>
+        </section>
+        <section class="terms-section">
+            <h2>Proceso</h2>
+            <ul>
+                <li>Si estás interesado/a en mi trabajo, ve a <span class="highlight">contacto</span> para llenar un formulario igualmente puedes encontrarlo al final de esta sección.</li>
+                <li>También puedes contactarme enviando un E-mail, un mensaje por Telegram o Twitter o puedes agregarme a Discord!</li>
+                <li>Necesitaré que me envíes el tipo de trabajo que deseas, referencias (incluso tig/twt de palo sirve) y algún lugar donde pueda contactarte!</li>
+                <li>Te estaré enviando todo el proceso del trabajo (boceto, lineart, color, fondo y detalles)</li>
+                <li>Puedes pedir dos cambios grandes en la etapa del boceto. Luego de esto se deberá pagar extra por ellos.</li>
+                <li>El trabajo no requiere revisiones menores en cualquier etapa, estas no tienen cobro extra.</li>
+                <li>Luego de que el trabajo sea finalizado por el artista y aprobado por el cliente <span class="highlight">no habrá reembolsos</span>.</li>
+            </ul>
+        </section>
+        <section class="terms-section draw-section">
+            <h2>Mis dibujos incluyen</h2>
+            <div class="draw-column">
+                <h3>Dibujo</h3>
+                <ul>
+                    <li>Lineart limpio</li>
+                    <li>Colores base</li>
+                    <li>Sombra sencilla</li>
+                    <li>Fondo sencillo</li>
+                    <li>Detalles simples</li>
+                </ul>
+            </div>
+            <div class="draw-column no-draw-column">
+                <h3>No Incluye</h3>
+                <ul>
+                    <li>Lineart Extra</li>
+                    <li>Colores adicionales</li>
+                    <li>Sombra detallada</li>
+                    <li>Fondos complejos</li>
+                    <li>Cualquier tipo de animación</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="social-icons">
+            <a href="https://x.com/PituPinx" class="social-icon" aria-label="Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+            </a>
+            <a href="https://www.tiktok.com/@pitupinxx" class="social-icon" aria-label="TikTok">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"></path></svg>
+            </a>
+            <a href="https://www.instagram.com/pitupinx/" class="social-icon" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+            </a>
+            <a href="https://www.twitch.tv/pitupinx" class="social-icon" aria-label="Twitch">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"></path></svg>
+            </a>
+            <a href="https://www.behance.net/pitupinx" class="social-icon" aria-label="Behance">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"></path></svg>
+            </a>
+        </div>
+    </footer>
+</body>
+</html>

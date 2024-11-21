@@ -1,0 +1,35 @@
+{% load static %}
+<div class="image-container">
+    {% if request.GET.category %}
+        <h2>{{ request.GET.category }}</h2>
+        <div class="content">
+            {% for dibujo in dibujos %}
+                {% if dibujo.categoria.nombre_categoria == request.GET.category %}
+                    <section>
+                        <div class="carta">
+                            <div class="info">
+                                <img id="{{ dibujo.nombre_dibujo }}" src="{% static dibujo.imagen.name %}" alt="{{ dibujo.nombre_dibujo }}" />
+                                <div class="info-info">
+                                    <h3>{{ dibujo.nombre_dibujo }}</h3>
+                                    <p>{{ dibujo.categoria.descripcion_categoria|linebreaks }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    // Asegúrate de que solo se muestre el primer dibujo
+    document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('.content section');
+        if (sections.length > 1) {
+            for (let i = 1; i < sections.length; i++) {
+                sections[i].style.display = 'none'; // Ocultar todas las secciones excepto la primera
+            }
+        }
+    });
+</script>

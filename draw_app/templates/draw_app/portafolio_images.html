@@ -1,0 +1,19 @@
+{% load static %}
+<div class="image-container">
+    {% if request.GET.category %}
+        <h3>{{ request.GET.category }}</h3>
+        {% for dibujo in dibujos %}
+            {% if dibujo.categoria.nombre_categoria == request.GET.category %}
+                <div class="image-wrapper categoria-{{ dibujo.categoria.nombre_categoria|slugify }}">
+                    <!-- Mostrar el nombre del dibujo -->
+                    <p>Nombre del dibujo: {{ dibujo.nombre_dibujo }}</p>
+                    <img id="{{ dibujo.nombre_dibujo }}" src="{% static dibujo.imagen.name %}" alt="{{ dibujo.nombre_dibujo }}" />
+                    <button onclick="zoomIn('{{ dibujo.nombre_dibujo }}')">+</button>
+                    <button onclick="zoomOut('{{ dibujo.nombre_dibujo }}')">-</button>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>No hay categorías seleccionadas. Por favor, elige una categoría.</p>
+    {% endif %}
+</div>

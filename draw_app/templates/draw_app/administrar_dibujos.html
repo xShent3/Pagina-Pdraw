@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opciones_estilos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffeafe;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            background-color: #f0ead6;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        .nav-button {
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #006400;
+            background: linear-gradient(to bottom, #ffb6c1, #90ee90);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            text-decoration: none;
+        }
+        .nav-button:hover {
+            background: linear-gradient(to bottom, #ff69b4, #32cd32);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .nav-button.active {
+            background: linear-gradient(to bottom, #ff1493, #00ff00);
+            color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3) inset;
+        }
+        main {
+            margin-top: 80px;
+            padding: 20px;
+            flex-grow: 1;
+        }
+        .content {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+        .tabs {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 8px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #006400;
+            background: linear-gradient(to bottom, #ffb6c1, #90ee90);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .tab:hover {
+            background: linear-gradient(to bottom, #ff69b4, #32cd32);
+        }
+        .input-group {
+            margin-bottom: 15px;
+            text-align: center; /* Centrar texto del label */
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ff1493;
+            font-weight: bold;
+        }
+        input, select {
+            width: calc(100% - 16px);
+            padding: 6px;
+            border: 1px solid #ffb6c1;
+            background-color: #fff;
+            color: #002f64;
+            border-radius: 5px;
+            text-align: center; /* Centrar texto dentro de inputs */
+        }
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ff1493' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+        .button-group {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 15px;
+        }
+        button {
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #006400;
+            background: linear-gradient(to bottom, #ffb6c1, #90ee90);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: linear-gradient(to bottom, #ff69b4, #32cd32);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        footer {
+            background-color: #ffc0cb;
+            padding: 20px;
+            text-align: center;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #90ee90;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #006400;
+        }
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+            }
+            .nav-button {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav aria-label="Navegación principal">
+            <a class="nav-button" href="{% url 'inicio' %}">Inicio</a>
+            <a class="nav-button" href="{% url 'sobre_mi' %}">Sobre Mi</a>
+            <a class="nav-button" href="{% url 'terminos' %}">Términos</a>
+            <a class="nav-button" href="{% url 'contacto' %}">Contacto</a>
+            <a class="nav-button" href="{% url 'portafolio' %}">Portafolio</a>
+            <a class="nav-button" href="{% url 'precios' %}">Precios</a>
+        
+            {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                    <a class="nav-button active" href="{% url 'opciones_categorias' %}">Administrar</a>
+                    <a class="nav-button" href="{% url 'logout' %}">Cerrar sesión</a>
+                {% else %}
+                    <a class="nav-button" href="{% url 'mi_perfil' %}">Mi Perfil</a>
+                    <a class="nav-button" href="{% url 'logout' %}">Cerrar sesión</a>
+                {% endif %}
+            {% else %}
+                <a class="nav-button" href="{% url 'login' %}">Login</a>
+                <a class="nav-button" href="{% url 'registro' %}">Registro</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        <div class="content">
+            <div class="tabs">
+                <a class="nav-button" href="{% url 'opciones_categorias' %}">Administrar categorias</a>
+                <a class="nav-button" href="{% url 'opcionessolicitudes' %}">Administrar Solicitudes</a>
+            </div>
+            <form method="POST" action="{% url 'administrar_dibujos' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-group">
+                    <label for="drawing-name">Nombre del Dibujo</label>
+                    <input type="text" id="drawing-name" name="nombre_dibujo" maxlength="100" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="category-list">Asignar Categoría</label>
+                    <select id="category-list" name="categoria_id">
+                        <option value="">Seleccione una categoría</option>
+                        {% for categoria in categorias %}
+                            <option value="{{ categoria.id }}">{{ categoria.nombre_categoria }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="image-upload">Cargar Imagen (jpg, png)</label>
+                    <input type="file" id="image-upload" name="imagen" accept=".jpg,.jpeg,.png" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="nav-button" onclick="return agregarDibujo()">Agregar Dibujo</button>
+                </div>
+            </form>
+
+            <h3>Dibujos Existentes</h3>
+            <div class="input-group">
+                <label for="drawing-list">Seleccionar Dibujo</label>
+                <select id="drawing-list" name="dibujo_id">
+                    <option value="">Seleccione un dibujo</option>
+                    {% for dibujo in dibujos %}
+                        <option value="{{ dibujo.id }}">{{ dibujo.nombre_dibujo }} - {{ dibujo.categoria.nombre_categoria }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="button-group">
+                <button type="button" onclick="eliminarDibujo()" class="nav-button">Eliminar Dibujo</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="social-icons">
+            <a href="https://x.com/PituPinx" class="social-icon" aria-label="Twitter">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+            </a>
+            <a href="https://www.tiktok.com/@pitupinxx" class="social-icon" aria-label="TikTok">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"></path></svg>
+            </a>
+            <a href="https://www.instagram.com/pitupinx/" class="social-icon" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+            </a>
+            <a href="https://www.twitch.tv/pitupinx" class="social-icon" aria-label="Twitch">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"></path></svg>
+            </a>
+            <a href="https://www.behance.net/pitupinx" class="social-icon" aria-label="Behance">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14h-8.027c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988h-6.466v-14.967h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zm-3.466-8.988h3.584c2.508 0 2.906-3-.312-3h-3.272v3zm3.391 3h-3.391v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"></path></svg>
+            </a>
+        </div>
+    </footer>
+</body>
+<script>
+    function eliminarDibujo() {
+        const drawingSelect = document.getElementById('drawing-list');
+        const selectedDibujoId = drawingSelect.value;
+    
+        if (selectedDibujoId) {
+
+            if (confirm("¿Estás seguro de que deseas eliminar este dibujo?")) {
+                fetch(`/eliminar-dibujo/${selectedDibujoId}/`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRFToken': getCookie('csrftoken'), 
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Dibujo eliminado exitosamente.");
+                        location.reload(); 
+                    } else {
+                        alert("Error al eliminar el dibujo.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Ocurrió un error al intentar eliminar el dibujo.");
+                });
+            }
+        } else {
+            alert("Por favor, selecciona un dibujo para eliminar.");
+        }
+    }
+    
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    function validarNombreDibujo() {
+    const nombreDibujoInput = document.getElementById('drawing-name').value.trim();
+    const select = document.getElementById('drawing-list');
+    const opciones = select.options;
+
+    if (!nombreDibujoInput) {
+        alert("El nombre del dibujo no puede estar vacío.");
+        return false;
+    }
+
+    for (let i = 0; i < opciones.length; i++) {
+        if (opciones[i].text.includes(nombreDibujoInput)) {
+            alert("No se ha añadido el dibujo porque ya existe, elija otro nombre");
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function agregarDibujo() {
+    if (validarNombreDibujo()) {
+        return true; // Permite que el formulario se envíe
+    } else {
+        return false; // Evita que el formulario se envíe
+    }
+}
+</script>
+</html>
